@@ -17,7 +17,6 @@ The web application consists of a python code that has methods that automate dat
 - pytest
 - pytest-watch
 
-
 ---
 
 ## Recent Updates
@@ -34,7 +33,7 @@ Clone this repository to your local machine.
 git clone https://github.com/will-ing/automation.git
 ```
 
-Once downloaded, activate your virtual environment and run by python web-scraper.py
+Once downloaded, activate your virtual environment and run by python automation/automation.py
 
 ```terminal
 cd YourRepo/YourProject
@@ -47,7 +46,7 @@ Unit testing is included in the project using the pytest outputs. Tests have bee
 
 ## Data Flow
 
-Encrypt > decrypt > break w/ brute force
+Read file -> stringify -> regex -> find all -> remove duplicates -> write.
 
 ---
 
@@ -61,5 +60,4 @@ Encrypt > decrypt > break w/ brute force
 ## Authors
 
 Will Koger\
-July 2020
-
+August 2020
