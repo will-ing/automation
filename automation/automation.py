@@ -2,11 +2,29 @@ import re
 
 
 def stringify_file(file):
+    """
+    Turns a txt file in to a string.
+
+    Args:
+        file (.txt): file with txt extension
+
+    Returns:
+        str: Returns a string of a file
+    """
     with open(file, "r") as f:
         return f.read().lower()
 
 
 def get_email(file):
+    """
+    Get the emails from a document
+
+    Args:
+        file (.txt): file with txt extension
+
+    Returns:
+        list: Returns a list of strings with emails
+    """
     opened = stringify_file(file)
     emails = re.findall(r'\S+@\S+', opened)
     return emails
@@ -19,10 +37,10 @@ def get_phone_numbers(file):
     REF: http://www.learningaboutelectronics.com/Articles/How-to-match-a-phone-number-in-Python-using-regular-expressions.php
 
     Args:
-        file ([type]): [description]
+        file (.txt): file with txt extension
 
     Returns:
-        [type]: [description]
+        list: Returns a list of strings with phone numbers
     """
     opened = stringify_file(file)
     regex = r'(\d{3}[-\.\s]\d{3}[-\.\s]\d{4}|\(\d{3}\)\s *\d{3}[-\.\s]\d{4}|\d{3}[-\.\s]\d{4}|\d{10})'
@@ -31,6 +49,13 @@ def get_phone_numbers(file):
 
 
 def store_info(info, file):
+    """
+    Stores data in to a file sorted in ascending order
+
+    Args:
+        info (list): list of data you want to write
+        file (.txt): file with txt extension that you want to write to.
+    """
     info.sort()
     with open(file, "w+") as f:
         for i in info:
