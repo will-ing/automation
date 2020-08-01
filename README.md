@@ -46,7 +46,7 @@ Unit testing is included in the project using the pytest outputs. Tests have bee
 
 ## Data Flow
 
-Read file -> stringify -> regex -> find all -> write.
+Read file -> stringify -> regex -> find all -> remove duplicates -> write.
 
 ---
 

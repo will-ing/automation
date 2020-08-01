@@ -17,7 +17,7 @@ def stringify_file(file):
 
 def get_email(file):
     """
-    Get the emails from a document
+    Get the emails from a document. Removes duplicates by converting to dict.
 
     Args:
         file (.txt): file with txt extension
@@ -27,6 +27,7 @@ def get_email(file):
     """
     opened = stringify_file(file)
     emails = re.findall(r'\S+@\S+', opened)
+    emails = list(dict.fromkeys(emails))
     return emails
 
 
@@ -37,7 +38,7 @@ def get_phone_numbers(file):
     REF: http://www.learningaboutelectronics.com/Articles/How-to-match-a-phone-number-in-Python-using-regular-expressions.php
 
     Args:
-        file (.txt): file with txt extension
+        file (.txt): file with txt extension. Removes duplicates by converting to dict
 
     Returns:
         list: Returns a list of strings with phone numbers
@@ -45,6 +46,7 @@ def get_phone_numbers(file):
     opened = stringify_file(file)
     regex = r'(\d{3}[-\.\s]\d{3}[-\.\s]\d{4}|\(\d{3}\)\s *\d{3}[-\.\s]\d{4}|\d{3}[-\.\s]\d{4}|\d{10})'
     phone_numbers = re.findall(regex, opened)
+    phone_numbers = list(dict.fromkeys(phone_numbers))
     return phone_numbers
 
 
@@ -57,9 +59,14 @@ def store_info(info, file):
         file (.txt): file with txt extension that you want to write to.
     """
     info.sort()
-    with open(file, "w+") as f:
+    list_format = stringify_file(file).split('\n')
+
+    with open(file, "a+") as f:
         for i in info:
-            f.write(i + '\n')
+            if i in list_format:
+                return False
+            else:
+                f.write(i + '\n')
 
 
 email_data = get_email('assets/potential-contacts.txt')
